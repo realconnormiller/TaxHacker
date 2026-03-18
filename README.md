@@ -14,9 +14,9 @@
 
 ## One-Click Deploy
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/realconnormiller/TaxHacker)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/realconnormiller/TaxHacker&branch=claude/prepare-for-licensing-2PzZp)
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template?referralCode=&repo=https://github.com/realconnormiller/TaxHacker)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template?template=https://github.com/realconnormiller/TaxHacker&branch=claude/prepare-for-licensing-2PzZp)
 
 ---
 
