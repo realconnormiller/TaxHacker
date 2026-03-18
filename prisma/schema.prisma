@@ -36,6 +36,8 @@ model User {
   businessAddress     String?       @map("business_address")
   businessBankDetails String?       @map("business_bank_details")
   businessLogo        String?       @map("business_logo")
+  isAdmin             Boolean       @default(false) @map("is_admin")
+  licenseKey          String?       @map("license_key")
   accounts            Account[]
   sessions            Session[]
   appData             AppData[]
@@ -236,4 +238,19 @@ model Progress {
 
   @@index([userId])
   @@map("progress")
+}
+
+model LicenseKey {
+  id          String    @id @default(uuid()) @db.Uuid
+  key         String    @unique
+  label       String?
+  createdById String    @map("created_by_id") @db.Uuid
+  claimedById String?   @map("claimed_by_id") @db.Uuid
+  maxUses     Int       @default(1) @map("max_uses")
+  currentUses Int       @default(0) @map("current_uses")
+  expiresAt   DateTime? @map("expires_at")
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("license_keys")
 }

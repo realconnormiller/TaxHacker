@@ -4,6 +4,7 @@ const envSchema = z.object({
   BASE_URL: z.string().url().default("http://localhost:7331"),
   PORT: z.string().default("7331"),
   SELF_HOSTED_MODE: z.enum(["true", "false"]).default("true"),
+  REQUIRE_LICENSE_KEY: z.enum(["true", "false"]).default("true"),
   OPENAI_API_KEY: z.string().optional(),
   OPENAI_MODEL_NAME: z.string().default("gpt-4o-mini"),
   GOOGLE_API_KEY: z.string().optional(),
@@ -26,11 +27,11 @@ const env = envSchema.parse(process.env)
 
 const config = {
   app: {
-    title: "TaxHacker",
-    description: "Your personal AI accountant",
+    title: "FreightBooks",
+    description: "AI-powered accounting for freight & logistics",
     version: process.env.npm_package_version || "0.0.1",
     baseURL: env.BASE_URL || `http://localhost:${env.PORT || "7331"}`,
-    supportEmail: "me@vas3k.com",
+    supportEmail: "connor@freightbooks.app",
   },
   upload: {
     acceptedMimeTypes: "image/*,.pdf,.doc,.docx,.xls,.xlsx",
@@ -63,7 +64,9 @@ const config = {
   auth: {
     secret: env.BETTER_AUTH_SECRET,
     loginUrl: "/enter",
+    registerUrl: "/register",
     disableSignup: env.DISABLE_SIGNUP === "true" || env.SELF_HOSTED_MODE === "true",
+    requireLicenseKey: env.REQUIRE_LICENSE_KEY === "true",
   },
   stripe: {
     secretKey: env.STRIPE_SECRET_KEY,

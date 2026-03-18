@@ -43,7 +43,7 @@ export default async function SelfHostedWelcomePage() {
     <Card className="w-full max-w-xl mx-auto p-8 flex flex-col items-center justify-center gap-4">
       <Image src="/logo/512.png" alt="Logo" width={144} height={144} className="w-36 h-36" />
       <CardTitle className="text-3xl font-bold ">
-        <ColoredText>TaxHacker: Self-Hosted Edition</ColoredText>
+        <ColoredText>{config.app.title}: Self-Hosted Edition</ColoredText>
       </CardTitle>
       <CardDescription className="flex flex-col gap-4 text-center text-lg">
         <p>Welcome to your own instance of TaxHacker. Let&apos;s set up a couple of settings to get started.</p>

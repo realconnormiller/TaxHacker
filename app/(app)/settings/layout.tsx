@@ -1,5 +1,6 @@
 import { SideNav } from "@/components/settings/side-nav"
 import { Separator } from "@/components/ui/separator"
+import { getCurrentUser } from "@/lib/auth"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -50,7 +51,18 @@ const settingsCategories = [
   },
 ]
 
-export default function SettingsLayout({ children }: { children: React.ReactNode }) {
+const adminCategories = [
+  {
+    title: "License Keys",
+    href: "/settings/licenses",
+  },
+]
+
+export default async function SettingsLayout({ children }: { children: React.ReactNode }) {
+  const user = await getCurrentUser()
+  const allCategories = user.isAdmin
+    ? [...settingsCategories, ...adminCategories]
+    : settingsCategories
   return (
     <>
       <div className="space-y-6 p-10 pb-16">
@@ -61,7 +73,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
         <Separator className="my-6" />
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           <aside className="-mx-4 lg:w-1/5">
-            <SideNav items={settingsCategories} />
+            <SideNav items={allCategories} />
           </aside>
           <div className="flex w-full">{children}</div>
         </div>

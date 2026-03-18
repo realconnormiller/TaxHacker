@@ -1,11 +1,11 @@
-import { LoginForm } from "@/components/auth/login-form"
+import { RegisterForm } from "@/components/auth/register-form"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ColoredText } from "@/components/ui/colored-text"
 import config from "@/lib/config"
 import Image from "next/image"
 import { redirect } from "next/navigation"
 
-export default async function LoginPage() {
+export default async function RegisterPage() {
   if (config.selfHosted.isEnabled) {
     redirect(config.selfHosted.redirectUrl)
   }
@@ -14,16 +14,10 @@ export default async function LoginPage() {
     <Card className="w-full max-w-xl mx-auto p-8 flex flex-col items-center justify-center gap-4">
       <Image src="/logo/512.png" alt="Logo" width={144} height={144} className="w-36 h-36" />
       <CardTitle className="text-3xl font-bold ">
-        <ColoredText>{config.app.title}</ColoredText>
+        <ColoredText>Join {config.app.title}</ColoredText>
       </CardTitle>
-      <CardContent className="w-full flex flex-col gap-4">
-        <LoginForm />
-        <p className="text-sm text-center text-muted-foreground">
-          Don&apos;t have an account?{" "}
-          <a href="/register" className="underline">
-            Register
-          </a>
-        </p>
+      <CardContent className="w-full">
+        <RegisterForm requireLicenseKey={config.auth.requireLicenseKey} />
       </CardContent>
     </Card>
   )
